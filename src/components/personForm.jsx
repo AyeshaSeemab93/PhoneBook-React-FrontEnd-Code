@@ -1,0 +1,38 @@
+import React from 'react';
+
+function PersonForm({newName, setNewName, newNum, setNewNum, AddPerson }) {
+  const stylebutton = {
+    "margin-top": 20,
+    "margin-left": 0,
+    "margin-bottom": 30
+  }
+  function handleChangeText(event) {
+    setNewName(event.target.value);
+  }
+
+  function handleChangeNum(event) {
+    setNewNum(event.target.value);
+  }
+
+  return (
+    <div>
+      <form onSubmit={(event) => { //event object is automaticallypassed 
+        event.preventDefault(); // to prevent refresh
+        //AddPerson();// can Invoke AddPerson directly here rather than at button
+      }}>
+        <div>
+          Name: <input type="text" value={newName} onChange={handleChangeText} />
+        </div>
+        <br />
+        <div>
+          Number: <input value={newNum} onChange={handleChangeNum} />
+        </div>
+        <div>
+          <button style={stylebutton} type="submit" onClick={AddPerson} >Add to PhoneBook</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default PersonForm;
