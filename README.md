@@ -2,6 +2,15 @@
 
 Welcome to the PhoneBook React Application! This project is a simple phonebook application developed using Vite. The app allows users to add new contacts with names and numbers and filter the displayed contacts.
 
+### React
+
+React is a popular JavaScript library for building user interfaces. It allows developers to create reusable UI components that efficiently update and render when the data changes. 
+
+### Vite
+
+Vite is a build tool that aims to provide a faster and more efficient development experience for modern web projects. It achieves this by leveraging native ES Module imports during development, resulting in faster startup times. Vite is used to scaffold and build the React application in this project.
+
+
 ## Project Overview
 
 - **Project Repository:** [PhoneBook React FrontEnd Code](https://github.com/AyeshaSeemab93/PhoneBook-React-FrontEnd-Code)
