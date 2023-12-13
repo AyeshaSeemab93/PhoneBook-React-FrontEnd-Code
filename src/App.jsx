@@ -12,6 +12,8 @@ function App(){
   const [newName, setNewName] = useState('')
   const[newNum, setNewNum] = useState('')
 
+  
+
   const[searchedName, setSearchedName] = useState('')
   const[showAll, setShowAll]= useState(true)
   const [message, setMessage] = useState('message')
@@ -40,6 +42,14 @@ console.log('render', persons.length, 'persons')
       }
       ))
    function AddPerson(){
+  // Check if newName is an empty string
+  if (!newName.trim()) {
+    setMessage('Name cannot be empty');
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
+    return; // Exit the function if newName is empty
+  }
     // const nameExists = persons.some(person=>person.name === newName);
     //some method give true or false where as find give person with the condition
     const nameExists = persons.find(person=>person.name.toLowerCase() === newName.toLowerCase());
@@ -56,13 +66,13 @@ console.log('render', persons.length, 'persons')
                 const updatedPersons = persons.map(person => person.id ===nameExists.id ? updatedPerson : person)
                 setPersons(updatedPersons); 
                 setMessage('Phone Number Changed Successfully!')
-                setTimeout(()=>{setMessage(null)}, 3000) //message dissapper fro 3 sec
+                setTimeout(()=>{setMessage(null)}, 5000) //message dissapper fro 5 sec
               }) 
               .catch(error=>{
                 setMessage(`Information of ${updatedPerson.name} has already been removed from server`)
                 setTimeout(() => {
                   setMessage(null)
-                }, 3000);
+                }, 5000);
 
               }) 
           }
@@ -71,7 +81,7 @@ console.log('render', persons.length, 'persons')
         const personObj = {
             name: newName.charAt(0).toUpperCase() + newName.slice(1),
             number: newNum,
-            id: persons.length + 1
+            id: persons.length * 3
           }
           //add new person to server
           numberService.create(personObj)
@@ -95,11 +105,14 @@ console.log('render', persons.length, 'persons')
      if(window.confirm('Are you sure You want to delete this?'))
       {
         numberService.remove(id, personToDelete)
-        .then(data => setPersons(persons.filter(person => person.id !== id)))
+        .then(response => {
+          const updatedPersons = persons.filter(person => person.id !== id);
+          setPersons(updatedPersons);
         setMessage(`${personToDelete.name} deleted successfully!`)
         setTimeout(()=>{setMessage(null)}, 3000)
-      } 
+      });
     }
+  };
 
   return(
     <div className='main'>
