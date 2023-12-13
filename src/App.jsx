@@ -20,15 +20,7 @@ function App(){
 
     useEffect(()=>{
       console.log("using effect")
-      const mockResponse = [
-        {
-          name: 'Ayesha',
-          number: '333-456-123',
-          id: 1, // You can assign a unique id
-        },
-      ];
-    
-    setPersons(mockResponse);
+
     numberService
       .getAll()
       .then(response=>{
