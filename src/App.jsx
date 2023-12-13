@@ -76,6 +76,7 @@ console.log('render', persons.length, 'persons')
           //add new person to server
           numberService.create(personObj)
           .then(response=>  setPersons(persons.concat(response)))
+          .catch(error=> console.error("Error: ", error))
           //update the state from server response(above) or do it from here like below
           setPersons(persons.concat(personObj))
         setNewName('')
