@@ -24,8 +24,18 @@ function App(){
       .getAll()
       .then(response=>{
         console.log('promise fulfilled')
-    const persons = response;
-    setPersons(persons);
+        const persons = response;
+        setPersons(persons);
+      })
+// Set a default person (e.g., Ayesha) with a hardcoded phone number if server is not working
+      .catch(error=>{
+        console.error('Error fetching data:', error);
+        const defaultPerson = {
+          name: 'Ayesha',
+          number: '333-456-123',
+          id: 123, // You can assign a unique id
+        };
+        setPersons([defaultPerson]);
       })
     }, []);
 
